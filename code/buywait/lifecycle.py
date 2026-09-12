@@ -179,6 +179,11 @@ def _resolve_component(
     if failed and len(failed) == len(ordered):
         return _effective_from_events((failed[-1],), component, request_date, EffectiveEventClass.FAILED_IGNORED, LifecycleResolutionStatus.RESOLVED, "failed_terminal_chain", "high", message_by_event, source_events=ordered)
 
+    scheduled = _events_with_status(ordered, EventStatus.SCHEDULED)
+    if failed and scheduled and _has_outstanding_retry_evidence(ordered, message_by_event):
+        chosen = scheduled[-1]
+        return _effective_from_events((chosen,), component, request_date, classify_event(chosen, request_date=request_date), LifecycleResolutionStatus.RESOLVED, "message_confirms_failed_debit_retry_outstanding", "high", message_by_event, source_events=ordered)
+
     settled = _events_with_status(ordered, EventStatus.SETTLED)
     if settled:
         chosen = settled[-1]
@@ -381,3 +386,19 @@ def _has_explicit_internal_transfer_evidence(
         "same user's accounts",
     )
     return any(phrase in evidence_text for phrase in phrases)
+
+
+def _has_outstanding_retry_evidence(
+    events: tuple[FinancialEvent, ...],
+    message_by_event: dict[str, tuple[MessageRecord, ...]],
+) -> bool:
+    evidence_text = " ".join(
+        message.message_text
+        for event in events
+        for message in message_by_event.get(event.event_id, ())
+    ).lower()
+    return (
+        "previous debit attempt failed" in evidence_text
+        and "bill is still outstanding" in evidence_text
+        and ("another debit will be attempted" in evidence_text or "another debit may be attempted" in evidence_text)
+    )
