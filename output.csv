@@ -1,0 +1,251 @@
+request_id,amount_safe_to_pay,affordability_status,recommended_payment_method,payment_plan,earliest_date_for_full_payment,spending_changes_needed,decision_explanation
+request_26,15656000,affordable_now,full_payment,2025-08-03:15656000,2025-08-03,none,Pay 15656000 today; the minimum balance remains protected.
+request_27,6670,affordable_now,full_payment,2026-07-05:6670,2026-07-05,none,Pay 6670 today; the minimum balance remains protected.
+request_28,180.94,affordable_later,wait,2024-07-15:1302.4,2024-07-15,none,Wait until 2024-07-15 to pay 1302.4 in full safely.
+request_29,16859.72,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the ZAR 28300 minimum protected.
+request_30,775.2,affordable_with_plan,installments,2026-04-06:268.74|2026-05-06:268.74|2026-06-05:268.74,2026-04-06,none,Use 3 installments totaling 806.22; the schedule stays above the minimum.
+request_31,2348868.27,affordable_later,wait,2024-10-15:18164000,2024-10-15,none,Wait until 2024-10-15 to pay 18164000 in full safely.
+request_32,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the ZAR 35700 minimum protected.
+request_33,30384.49,affordable_later,wait,2026-02-15:118000,2026-02-15,none,Wait until 2026-02-15 to pay 118000 in full safely.
+request_34,129400,affordable_now,full_payment,2024-12-04:129400,2024-12-04,none,Pay 129400 today; the minimum balance remains protected.
+request_35,31208.29,affordable_later,wait,2025-12-15:212000,2025-12-15,none,Wait until 2025-12-15 to pay 212000 in full safely.
+request_36,586.34,affordable_later,wait,2026-08-15:3954,2026-08-15,none,Wait until 2026-08-15 to pay 3954 in full safely.
+request_37,4042761.29,affordable_later,wait,2024-04-15:14649000,2024-04-15,none,Wait until 2024-04-15 to pay 14649000 in full safely.
+request_38,180.39,affordable_later,wait,2025-09-15:971.3,2025-09-15,none,Wait until 2025-09-15 to pay 971.3 in full safely.
+request_39,62229,affordable_later,wait,2026-05-15:208600,2026-05-15,none,Wait until 2026-05-15 to pay 208600 in full safely.
+request_40,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the EUR 1500 minimum protected.
+request_41,9344196.08,affordable_later,wait,2025-12-15:38760000,2025-12-15,none,Wait until 2025-12-15 to pay 38760000 in full safely.
+request_42,52100,affordable_now,full_payment,2026-01-05:52100,2026-01-05,none,Pay 52100 today; the minimum balance remains protected.
+request_43,6982440.89,affordable_later,wait,2024-11-15:43339000,2024-11-15,none,Wait until 2024-11-15 to pay 43339000 in full safely.
+request_44,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the INR 82900 minimum protected.
+request_45,3791768.01,affordable_later,wait,2026-08-15:21983000,2026-08-15,none,Wait until 2026-08-15 to pay 21983000 in full safely.
+request_46,20205.38,affordable_with_plan,partial_payment,2024-12-03:20205.38|2024-12-15:29244.62,2024-12-15,none,Use the two-payment partial plan; each payment was verified against the projected balance.
+request_47,29075092.35,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the IDR 30049000 minimum protected.
+request_48,45700,affordable_now,full_payment,2026-07-25:45700,2026-07-25,none,Pay 45700 today; the minimum balance remains protected.
+request_49,9249618.48,affordable_with_plan,installments,2024-03-18:11902106.67|2024-04-18:11902106.67|2024-05-19:11902106.67,2024-05-15,none,Use 3 installments totaling 35706320.01; the schedule stays above the minimum.
+request_50,43900,affordable_now,full_payment,2025-08-06:43900,2025-08-06,none,Pay 43900 today; the minimum balance remains protected.
+request_51,2191000,affordable_now,full_payment,2026-01-03:2191000,2026-01-03,none,Pay 2191000 today; the minimum balance remains protected.
+request_52,17127.22,affordable_later,wait,2024-06-15:28870,2024-06-15,none,Wait until 2024-06-15 to pay 28870 in full safely.
+request_53,561.46,affordable_with_plan,installments,2025-11-21:589.06|2025-12-19:589.06|2026-01-16:589.06,2025-12-15,none,Use 3 installments totaling 1767.18; the schedule stays above the minimum.
+request_54,1023.49,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the ZAR 37000 minimum protected.
+request_55,130167.62,affordable_with_plan,installments,2026-06-11:75781.33|2026-07-12:75781.33|2026-08-12:75781.33,2026-06-15,none,Use 3 installments totaling 227343.99; the schedule stays above the minimum.
+request_56,580.72,affordable_with_plan,partial_payment,2025-02-03:580.72|2025-02-15:300.84,2025-02-15,none,Use the two-payment partial plan; each payment was verified against the projected balance.
+request_57,10655.58,affordable_later,wait,2026-05-15:61446,2026-05-15,none,Wait until 2026-05-15 to pay 61446 in full safely.
+request_58,16226000,affordable_now,full_payment,2024-12-07:16226000,2024-12-07,none,Pay 16226000 today; the minimum balance remains protected.
+request_59,140600,affordable_with_plan,installments,2025-05-07:48741.33|2025-06-04:48741.33|2025-07-02:48741.33,2025-05-04,none,Use 3 installments totaling 146223.99; the schedule stays above the minimum.
+request_60,138.67,affordable_later,wait,2026-02-15:199.89,2026-02-15,none,Wait until 2026-02-15 to pay 199.89 in full safely.
+request_61,29062,affordable_with_plan,installments,2024-03-17:10074.83|2024-04-17:10074.83|2024-05-18:10074.83,2024-03-03,none,Use 3 installments totaling 30224.49; the schedule stays above the minimum.
+request_62,404.23,affordable_now,full_payment,2025-08-05:404.23,2025-08-05,none,Pay 404.23 today; the minimum balance remains protected.
+request_63,41180.53,affordable_with_plan,partial_payment,2026-07-07:41180.53|2026-09-15:302719.47,2026-09-15,none,Use the two-payment partial plan; each payment was verified against the projected balance.
+request_64,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the INR 36100 minimum protected.
+request_65,6089.84,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the ZAR 15500 minimum protected.
+request_66,22200,affordable_now,full_payment,2026-04-03:22200,2026-04-03,none,Pay 22200 today; the minimum balance remains protected.
+request_67,485.53,affordable_later,wait,2024-10-15:2094,2024-10-15,none,Wait until 2024-10-15 to pay 2094 in full safely.
+request_68,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the USD 1500 minimum protected.
+request_69,478.18,not_affordable,not_recommended,none,2026-01-15,none,Do not proceed now. No eligible payment plan keeps the EUR 700 minimum protected.
+request_70,40518.42,affordable_later,wait,2025-02-15:243900,2025-02-15,none,Wait until 2025-02-15 to pay 243900 in full safely.
+request_71,760278.97,not_affordable,not_recommended,none,2025-07-15,none,Do not proceed now. No eligible payment plan keeps the IDR 8884800 minimum protected.
+request_72,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the ZAR 12200 minimum protected.
+request_73,71400,affordable_now,full_payment,2023-01-20:71400,2023-01-20,none,Pay 71400 today; the minimum balance remains protected.
+request_74,5010,affordable_now,full_payment,2025-08-04:5010,2025-08-04,none,Pay 5010 today; the minimum balance remains protected.
+request_75,28270,affordable_with_plan,installments,2026-04-09:9800.27|2026-05-09:9800.27|2026-06-08:9800.27,2026-04-06,none,Use 3 installments totaling 29400.81; the schedule stays above the minimum.
+request_76,742.26,not_affordable,not_recommended,none,2024-07-15,none,Do not proceed now. No eligible payment plan keeps the USD 1800 minimum protected.
+request_77,50379.5,not_affordable,not_recommended,none,2025-11-15,none,Do not proceed now. No eligible payment plan keeps the INR 82200 minimum protected.
+request_78,48545.79,affordable_with_plan,full_payment,2025-10-02:50200,2025-10-15,reduce_to:event_7225:1480,"Make spending change(s) reduce_to:event_7225:1480, then pay safely."
+request_79,342.43,not_affordable,not_recommended,none,2024-11-15,none,Do not proceed now. No eligible payment plan keeps the EUR 1000 minimum protected.
+request_80,98554.16,not_affordable,not_recommended,none,2025-03-15,none,Do not proceed now. No eligible payment plan keeps the INR 121300 minimum protected.
+request_81,1942.95,not_affordable,not_recommended,none,2026-07-15,none,Do not proceed now. No eligible payment plan keeps the USD 1600 minimum protected.
+request_82,232.49,affordable_later,wait,2025-01-15:1405.2,2025-01-15,none,Wait until 2025-01-15 to pay 1405.2 in full safely.
+request_83,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the INR 37800 minimum protected.
+request_84,22730.21,affordable_later,wait,2026-05-15:95400,2026-05-15,none,Wait until 2026-05-15 to pay 95400 in full safely.
+request_85,343581.96,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the IDR 6396300 minimum protected.
+request_86,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the INR 84900 minimum protected.
+request_87,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the INR 185900 minimum protected.
+request_88,9090.84,affordable_with_plan,installments,2024-06-14:9045.23|2024-07-15:9045.23|2024-08-15:9045.23,2024-06-15,none,Use 3 installments totaling 27135.69; the schedule stays above the minimum.
+request_89,8131466.66,affordable_with_plan,installments,2025-11-18:4768746.67|2025-12-16:4768746.67|2026-01-13:4768746.67,2025-11-15,none,Use 3 installments totaling 14306240.01; the schedule stays above the minimum.
+request_90,2560,affordable_now,full_payment,2026-07-06:2560,2026-07-06,none,Pay 2560 today; the minimum balance remains protected.
+request_91,330.44,affordable_later,wait,2024-10-15:1927.2,2024-10-15,none,Wait until 2024-10-15 to pay 1927.2 in full safely.
+request_92,34034,affordable_now,full_payment,2025-02-05:34034,2025-02-05,none,Pay 34034 today; the minimum balance remains protected.
+request_93,1729.2,affordable_now,full_payment,2026-04-07:1729.2,2026-04-07,none,Pay 1729.2 today; the minimum balance remains protected.
+request_94,572,affordable_now,full_payment,2024-12-04:572,2024-12-04,none,Pay 572 today; the minimum balance remains protected.
+request_95,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the INR 145500 minimum protected.
+request_96,47389.68,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the INR 56500 minimum protected.
+request_97,0,affordable_with_plan,installments,2024-03-19:8145.28|2024-04-19:8145.28|2024-05-20:8145.28,,stop:event_9006,Use 3 installments totaling 24435.84; the schedule stays above the minimum.
+request_98,7177.37,affordable_later,wait,2025-09-15:27148,2025-09-15,none,Wait until 2025-09-15 to pay 27148 in full safely.
+request_99,18062,affordable_now,full_payment,2026-07-04:18062,2026-07-04,none,Pay 18062 today; the minimum balance remains protected.
+request_100,21992.14,affordable_with_plan,installments,2024-06-13:12866.19|2024-07-14:12866.19|2024-08-14:12866.19,2024-06-15,none,Use 3 installments totaling 38598.57; the schedule stays above the minimum.
+request_101,140367.79,affordable_with_plan,full_payment,2025-11-03:143500,2025-11-15,stop:event_9378|reduce_to:event_9377:2660,"Make spending change(s) stop:event_9378|reduce_to:event_9377:2660, then pay safely."
+request_102,1716,affordable_with_plan,installments,2026-04-05:594.88|2026-05-05:594.88|2026-06-04:594.88,2026-04-05,none,Use 3 installments totaling 1784.64; the schedule stays above the minimum.
+request_103,11012.5,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the INR 125500 minimum protected.
+request_104,17204,affordable_now,full_payment,2025-02-04:17204,2025-02-04,none,Pay 17204 today; the minimum balance remains protected.
+request_105,51704.65,affordable_with_plan,full_payment,2026-06-08:53500,2026-06-15,reduce_to:event_9720:1632,"Make spending change(s) reduce_to:event_9720:1632, then pay safely."
+request_106,436.25,affordable_later,wait,2025-02-15:2207.7,2025-02-15,none,Wait until 2025-02-15 to pay 2207.7 in full safely.
+request_107,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the EUR 1600 minimum protected.
+request_108,2349.3,not_affordable,not_recommended,none,2026-09-15,none,Do not proceed now. No eligible payment plan keeps the ZAR 24100 minimum protected.
+request_109,599.9,affordable_with_plan,installments,2024-03-18:645.98|2024-04-18:645.98|2024-05-19:645.98,2024-04-15,none,Use 3 installments totaling 1937.94; the schedule stays above the minimum.
+request_110,21085.38,affordable_with_plan,installments,2025-08-06:7748.69|2025-09-03:7748.69|2025-10-01:7748.69,,stop:event_10198|reduce_to:event_10199:225.06,Use 3 installments totaling 23246.07; the schedule stays above the minimum.
+request_111,16625000,affordable_now,full_payment,2026-04-03:16625000,2026-04-03,none,Pay 16625000 today; the minimum balance remains protected.
+request_112,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the EUR 500 minimum protected.
+request_113,23967.19,affordable_later,wait,2026-09-15:36500,2026-09-15,none,Wait until 2026-09-15 to pay 36500 in full safely.
+request_114,64491.11,affordable_with_plan,full_payment,2026-01-04:65300,2026-01-15,stop:event_10559,"Make spending change(s) stop:event_10559, then pay safely."
+request_115,15023.67,affordable_later,wait,2024-10-15:80500,2024-10-15,none,Wait until 2024-10-15 to pay 80500 in full safely.
+request_116,7414.04,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the INR 80300 minimum protected.
+request_117,847.93,not_affordable,not_recommended,none,2026-07-15,none,Do not proceed now. No eligible payment plan keeps the EUR 1000 minimum protected.
+request_118,661.58,affordable_with_plan,installments,2024-12-07:255.87|2025-01-07:255.87|2025-02-07:255.87,2024-12-15,none,Use 3 installments totaling 767.61; the schedule stays above the minimum.
+request_119,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the INR 151200 minimum protected.
+request_120,7714000,affordable_now,full_payment,2026-04-06:7714000,2026-04-06,none,Pay 7714000 today; the minimum balance remains protected.
+request_121,633.6,affordable_now,full_payment,2024-03-03:633.6,2024-03-03,none,Pay 633.6 today; the minimum balance remains protected.
+request_122,20558000,affordable_with_plan,installments,2025-08-05:7126773.33|2025-09-02:7126773.33|2025-09-30:7126773.33,2025-08-05,none,Use 3 installments totaling 21380319.99; the schedule stays above the minimum.
+request_123,4076000,affordable_now,full_payment,2026-01-07:4076000,2026-01-07,none,Pay 4076000 today; the minimum balance remains protected.
+request_124,1231.41,affordable_with_plan,installments,2024-06-11:1076.12|2024-07-12:1076.12|2024-08-12:1076.12,2024-07-15,none,Use 3 installments totaling 3228.36; the schedule stays above the minimum.
+request_125,6089.76,not_affordable,not_recommended,none,2025-11-15,none,Do not proceed now. No eligible payment plan keeps the ZAR 11300 minimum protected.
+request_126,53552.17,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the INR 129700 minimum protected.
+request_127,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the ZAR 41000 minimum protected.
+request_128,25168,affordable_now,full_payment,2025-02-07:25168,2025-02-07,none,Pay 25168 today; the minimum balance remains protected.
+request_129,77.67,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the USD 800 minimum protected.
+request_130,230.8,affordable_later,wait,2025-01-15:1978.8,2025-01-15,none,Wait until 2025-01-15 to pay 1978.8 in full safely.
+request_131,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the USD 1100 minimum protected.
+request_132,287.45,affordable_later,wait,2026-02-15:379.86,2026-02-15,none,Wait until 2026-02-15 to pay 379.86 in full safely.
+request_133,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the IDR 9986200 minimum protected.
+request_134,4009334.58,affordable_later,wait,2025-09-15:21831000,2025-09-15,none,Wait until 2025-09-15 to pay 21831000 in full safely.
+request_135,289.6,affordable_with_plan,full_payment,2026-07-06:304.8,2026-07-15,reduce_to:event_12455:17.5,"Make spending change(s) reduce_to:event_12455:17.5, then pay safely."
+request_136,490.29,not_affordable,not_recommended,none,2024-06-15,none,Do not proceed now. No eligible payment plan keeps the USD 1100 minimum protected.
+request_137,14243.78,affordable_later,wait,2025-12-15:80100,2025-12-15,none,Wait until 2025-12-15 to pay 80100 in full safely.
+request_138,743.67,affordable_with_plan,partial_payment,2026-04-07:743.67|2026-04-15:513.27,2026-04-15,none,Use the two-payment partial plan; each payment was verified against the projected balance.
+request_139,1388.28,affordable_with_plan,installments,2024-09-07:802.88|2024-10-08:802.88|2024-11-08:802.88,2024-09-15,none,Use 3 installments totaling 2408.64; the schedule stays above the minimum.
+request_140,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the ZAR 21600 minimum protected.
+request_141,22127.63,not_affordable,not_recommended,none,2026-03-15,none,Do not proceed now. No eligible payment plan keeps the INR 67300 minimum protected.
+request_142,1263.6,affordable_now,full_payment,2024-12-05:1263.6,2024-12-05,none,Pay 1263.6 today; the minimum balance remains protected.
+request_143,3425.31,affordable_later,wait,2025-06-15:12584,2025-06-15,none,Wait until 2025-06-15 to pay 12584 in full safely.
+request_144,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the USD 600 minimum protected.
+request_145,20822.33,affordable_with_plan,installments,2024-03-20:75365.33|2024-04-20:75365.33|2024-05-21:75365.33,2024-04-15,none,Use 3 installments totaling 226095.99; the schedule stays above the minimum.
+request_146,12581.18,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the INR 108600 minimum protected.
+request_147,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the EUR 900 minimum protected.
+request_148,6157.34,affordable_with_plan,installments,2024-06-14:7710.56|2024-07-15:7710.56|2024-08-15:7710.56,2024-06-15,stop:event_13593|stop:event_13591|stop:event_13592,Use 3 installments totaling 23131.68; the schedule stays above the minimum.
+request_149,17169.02,affordable_with_plan,installments,2025-11-18:12706.03|2025-12-16:12706.03|2026-01-13:12706.03,2025-12-15,none,Use 3 installments totaling 38118.09; the schedule stays above the minimum.
+request_150,318.06,affordable_with_plan,installments,2026-01-06:171.98|2026-02-05:171.98|2026-03-07:171.98,2026-03-15,stop:event_13786|reduce_to:event_13787:16,Use 3 installments totaling 515.94; the schedule stays above the minimum.
+request_151,26999000,affordable_now,full_payment,2024-09-03:26999000,2024-09-03,none,Pay 26999000 today; the minimum balance remains protected.
+request_152,9990.78,affordable_with_plan,installments,2025-02-12:4812.43|2025-03-12:4812.43|2025-04-09:4812.43,2025-02-15,none,Use 3 installments totaling 14437.29; the schedule stays above the minimum.
+request_153,115.93,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the USD 1400 minimum protected.
+request_154,1625.8,affordable_with_plan,installments,2024-12-04:563.61|2025-01-04:563.61|2025-02-04:563.61,2024-12-04,none,Use 3 installments totaling 1690.83; the schedule stays above the minimum.
+request_155,45785.44,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the INR 56300 minimum protected.
+request_156,8959.31,affordable_later,wait,2026-05-15:43076,2026-05-15,none,Wait until 2026-05-15 to pay 43076 in full safely.
+request_157,3466789.44,affordable_later,wait,2024-04-15:23503000,2024-04-15,none,Wait until 2024-04-15 to pay 23503000 in full safely.
+request_158,242600,affordable_with_plan,installments,2025-08-07:84101.33|2025-09-04:84101.33|2025-10-02:84101.33,2025-08-07,none,Use 3 installments totaling 252303.99; the schedule stays above the minimum.
+request_159,5686.49,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the ZAR 8700 minimum protected.
+request_160,484,affordable_with_plan,installments,2024-06-13:432.05|2024-07-14:432.05|2024-08-14:432.05,2024-07-15,none,Use 3 installments totaling 1296.15; the schedule stays above the minimum.
+request_161,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the IDR 23010400 minimum protected.
+request_162,2359076.52,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the IDR 24161100 minimum protected.
+request_163,11107655.01,affordable_with_plan,installments,2024-09-10:6692053.33|2024-10-11:6692053.33|2024-11-11:6692053.33,2024-09-15,none,Use 3 installments totaling 20076159.99; the schedule stays above the minimum.
+request_164,27018000,affordable_with_plan,installments,2025-02-11:9366240|2025-03-11:9366240|2025-04-08:9366240,2025-02-04,none,Use 3 installments totaling 28098720; the schedule stays above the minimum.
+request_165,80600,affordable_now,full_payment,2026-04-06:80600,2026-04-06,none,Pay 80600 today; the minimum balance remains protected.
+request_166,2907.6,affordable_with_plan,installments,2024-12-03:1007.97|2025-01-03:1007.97|2025-02-03:1007.97,2024-12-03,none,Use 3 installments totaling 3023.91; the schedule stays above the minimum.
+request_167,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the ZAR 31200 minimum protected.
+request_168,32779.98,affordable_with_plan,partial_payment,2026-01-07:32779.98|2026-03-15:16600.02,2026-03-15,none,Use the two-payment partial plan; each payment was verified against the projected balance.
+request_169,41976,affordable_now,full_payment,2024-03-04:41976,2024-03-04,none,Pay 41976 today; the minimum balance remains protected.
+request_170,32032769.57,affordable_with_plan,installments,2025-08-06:12804480|2025-09-03:12804480|2025-10-01:12804480,2025-08-15,none,Use 3 installments totaling 38413440; the schedule stays above the minimum.
+request_171,32.29,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the EUR 500 minimum protected.
+request_172,6060.73,affordable_with_plan,partial_payment,2024-06-05:6060.73|2024-06-15:4139.27,2024-06-15,none,Use the two-payment partial plan; each payment was verified against the projected balance.
+request_173,61761.68,affordable_with_plan,installments,2025-11-21:39173.33|2025-12-19:39173.33|2026-01-16:39173.33,2025-11-15,none,Use 3 installments totaling 117519.99; the schedule stays above the minimum.
+request_174,1146.2,affordable_with_plan,installments,2026-04-04:397.35|2026-05-04:397.35|2026-06-03:397.35,2026-04-04,none,Use 3 installments totaling 1192.05; the schedule stays above the minimum.
+request_175,2346.3,affordable_now,full_payment,2024-09-06:2346.3,2024-09-06,none,Pay 2346.3 today; the minimum balance remains protected.
+request_176,353.98,not_affordable,not_recommended,none,2025-04-15,none,Do not proceed now. No eligible payment plan keeps the EUR 600 minimum protected.
+request_177,1017.6,affordable_now,full_payment,2026-01-05:1017.6,2026-01-05,none,Pay 1017.6 today; the minimum balance remains protected.
+request_178,2938.1,affordable_with_plan,installments,2024-12-07:1018.54|2025-01-07:1018.54|2025-02-07:1018.54,2024-12-07,none,Use 3 installments totaling 3055.62; the schedule stays above the minimum.
+request_179,4517745.49,affordable_later,wait,2025-06-15:41648000,2025-06-15,none,Wait until 2025-06-15 to pay 41648000 in full safely.
+request_180,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the INR 37300 minimum protected.
+request_181,327.88,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the USD 2000 minimum protected.
+request_182,65714,affordable_now,full_payment,2025-08-05:65714,2025-08-05,none,Pay 65714 today; the minimum balance remains protected.
+request_183,23294102.48,affordable_with_plan,installments,2026-04-10:9313546.67|2026-05-10:9313546.67|2026-06-09:9313546.67,2026-04-15,none,Use 3 installments totaling 27940640.01; the schedule stays above the minimum.
+request_184,10906.11,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the INR 110800 minimum protected.
+request_185,206.15,affordable_later,wait,2025-12-15:1257.3,2025-12-15,none,Wait until 2025-12-15 to pay 1257.3 in full safely.
+request_186,5241.23,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the ZAR 22000 minimum protected.
+request_187,42542.59,affordable_later,wait,2024-10-15:187500,2024-10-15,none,Wait until 2024-10-15 to pay 187500 in full safely.
+request_188,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the EUR 900 minimum protected.
+request_189,488.4,affordable_now,full_payment,2026-07-04:488.4,2026-07-04,none,Pay 488.4 today; the minimum balance remains protected.
+request_190,440,affordable_later,wait,2025-01-15:2557.5,2025-01-15,none,Wait until 2025-01-15 to pay 2557.5 in full safely.
+request_191,664.4,affordable_now,full_payment,2025-05-03:664.4,2025-05-03,none,Pay 664.4 today; the minimum balance remains protected.
+request_192,119.02,not_affordable,not_recommended,none,2026-06-15,none,Do not proceed now. No eligible payment plan keeps the USD 1000 minimum protected.
+request_193,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the EUR 1000 minimum protected.
+request_194,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the INR 113600 minimum protected.
+request_195,976.15,not_affordable,not_recommended,none,2026-03-15,none,Do not proceed now. No eligible payment plan keeps the EUR 700 minimum protected.
+request_196,762.3,affordable_now,full_payment,2024-06-03:762.3,2024-06-03,none,Pay 762.3 today; the minimum balance remains protected.
+request_197,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the IDR 26245900 minimum protected.
+request_198,185800,affordable_now,full_payment,2026-07-07:185800,2026-07-07,none,Pay 185800 today; the minimum balance remains protected.
+request_199,23674000,affordable_with_plan,installments,2024-09-07:8206986.67|2024-10-08:8206986.67|2024-11-08:8206986.67,2024-09-04,none,Use 3 installments totaling 24620960.01; the schedule stays above the minimum.
+request_200,21717000,affordable_now,full_payment,2025-02-06:21717000,2025-02-06,none,Pay 21717000 today; the minimum balance remains protected.
+request_201,23628970.38,affordable_with_plan,full_payment,2026-04-03:23997000,,stop:event_18493,"Make spending change(s) stop:event_18493, then pay safely."
+request_202,123900,affordable_now,full_payment,2024-12-05:123900,2024-12-05,none,Pay 123900 today; the minimum balance remains protected.
+request_203,1442.1,affordable_with_plan,installments,2025-05-10:499.93|2025-06-07:499.93|2025-07-05:499.93,2025-05-07,none,Use 3 installments totaling 1499.79; the schedule stays above the minimum.
+request_204,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the EUR 1300 minimum protected.
+request_205,10621000,affordable_now,full_payment,2024-03-06:10621000,2024-03-06,none,Pay 10621000 today; the minimum balance remains protected.
+request_206,1404.7,affordable_with_plan,installments,2025-08-03:486.96|2025-08-31:486.96|2025-09-28:486.96,2025-08-03,none,Use 3 installments totaling 1460.88; the schedule stays above the minimum.
+request_207,5593.53,affordable_later,wait,2026-07-15:11830,2026-07-15,none,Wait until 2026-07-15 to pay 11830 in full safely.
+request_208,2852047.64,affordable_later,wait,2024-06-15:4413000,2024-06-15,none,Wait until 2024-06-15 to pay 4413000 in full safely.
+request_209,803.77,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the ZAR 18400 minimum protected.
+request_210,882.24,affordable_with_plan,partial_payment,2026-04-06:882.24|2026-04-15:477.78,2026-04-15,none,Use the two-payment partial plan; each payment was verified against the projected balance.
+request_211,118.33,affordable_later,wait,2024-10-15:1788.6,2024-10-15,none,Wait until 2024-10-15 to pay 1788.6 in full safely.
+request_212,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the IDR 29579800 minimum protected.
+request_213,3362.4,affordable_with_plan,installments,2026-01-21:1165.63|2026-02-20:1165.63|2026-03-22:1165.63,2026-01-07,none,Use 3 installments totaling 3496.89; the schedule stays above the minimum.
+request_214,52079.29,affordable_with_plan,partial_payment,2024-12-04:52079.29|2024-12-15:17670.71,2024-12-15,none,Use the two-payment partial plan; each payment was verified against the projected balance.
+request_215,29986,affordable_with_plan,installments,2025-05-09:10395.15|2025-06-06:10395.15|2025-07-04:10395.15,2025-05-06,none,Use 3 installments totaling 31185.45; the schedule stays above the minimum.
+request_216,510.48,affordable_later,wait,2026-08-15:3332.4,2026-08-15,none,Wait until 2026-08-15 to pay 3332.4 in full safely.
+request_217,18158.99,affordable_with_plan,installments,2024-03-19:12889.07|2024-04-19:12889.07|2024-05-20:12889.07,2024-04-15,none,Use 3 installments totaling 38667.21; the schedule stays above the minimum.
+request_218,25229560.47,affordable_with_plan,installments,2025-08-07:21195893.33|2025-09-04:21195893.33|2025-10-02:21195893.33,2025-09-15,none,Use 3 installments totaling 63587679.99; the schedule stays above the minimum.
+request_219,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the EUR 1100 minimum protected.
+request_220,12.16,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the EUR 1100 minimum protected.
+request_221,109800,affordable_now,full_payment,2025-11-03:109800,2025-11-03,none,Pay 109800 today; the minimum balance remains protected.
+request_222,34078,affordable_now,full_payment,2026-01-05:34078,2026-01-05,none,Pay 34078 today; the minimum balance remains protected.
+request_223,898.7,affordable_now,full_payment,2024-09-07:898.7,2024-09-07,none,Pay 898.7 today; the minimum balance remains protected.
+request_224,9783228.79,affordable_with_plan,partial_payment,2025-02-04:9783228.79|2025-02-15:543771.21,2025-02-15,none,Use the two-payment partial plan; each payment was verified against the projected balance.
+request_225,8370687.2,affordable_with_plan,installments,2026-07-20:7647120|2026-08-19:7647120|2026-09-18:7647120,2026-08-15,none,Use 3 installments totaling 22941360; the schedule stays above the minimum.
+request_226,157000,affordable_now,full_payment,2024-12-03:157000,2024-12-03,none,Pay 157000 today; the minimum balance remains protected.
+request_227,7422.06,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the INR 62900 minimum protected.
+request_228,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the IDR 26191200 minimum protected.
+request_229,415.68,affordable_with_plan,installments,2024-03-18:529.29|2024-04-18:529.29|2024-05-19:529.29,2024-04-15,none,Use 3 installments totaling 1587.87; the schedule stays above the minimum.
+request_230,3537.6,affordable_now,full_payment,2025-08-06:3537.6,2025-08-06,none,Pay 3537.6 today; the minimum balance remains protected.
+request_231,32813.32,affordable_with_plan,installments,2026-01-06:12378.08|2026-02-05:12378.08|2026-03-07:12378.08,2026-01-15,none,Use 3 installments totaling 37134.24; the schedule stays above the minimum.
+request_232,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the EUR 2400 minimum protected.
+request_233,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the IDR 10365700 minimum protected.
+request_234,248.46,affordable_later,wait,2026-08-15:1213.3,2026-08-15,none,Wait until 2026-08-15 to pay 1213.3 in full safely.
+request_235,967.2,affordable_now,full_payment,2024-09-06:967.2,2024-09-06,none,Pay 967.2 today; the minimum balance remains protected.
+request_236,5436203.8,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the IDR 16768600 minimum protected.
+request_237,23826000,affordable_now,full_payment,2026-04-05:23826000,2026-04-05,none,Pay 23826000 today; the minimum balance remains protected.
+request_238,663.6,affordable_with_plan,installments,2024-12-07:230.05|2025-01-07:230.05|2025-02-07:230.05,2024-12-07,none,Use 3 installments totaling 690.15; the schedule stays above the minimum.
+request_239,216.94,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the USD 600 minimum protected.
+request_240,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the INR 52800 minimum protected.
+request_241,21052000,affordable_with_plan,installments,2024-03-17:7298026.67|2024-04-17:7298026.67|2024-05-18:7298026.67,2024-03-03,none,Use 3 installments totaling 21894080.01; the schedule stays above the minimum.
+request_242,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the EUR 600 minimum protected.
+request_243,17468,affordable_now,full_payment,2026-07-07:17468,2026-07-07,none,Pay 17468 today; the minimum balance remains protected.
+request_244,38973.86,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the ZAR 45900 minimum protected.
+request_245,24059.75,affordable_later,wait,2025-12-15:128500,2025-12-15,none,Wait until 2025-12-15 to pay 128500 in full safely.
+request_246,64086,affordable_with_plan,installments,2026-04-03:22216.48|2026-05-03:22216.48|2026-06-02:22216.48,2026-04-03,none,Use 3 installments totaling 66649.44; the schedule stays above the minimum.
+request_247,1059.3,affordable_now,full_payment,2024-09-05:1059.3,2024-09-05,none,Pay 1059.3 today; the minimum balance remains protected.
+request_248,889.2,affordable_with_plan,partial_payment,2025-02-07:889.2|2025-03-15:1076.4,2025-03-15,none,Use the two-payment partial plan; each payment was verified against the projected balance.
+request_249,135.02,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the USD 600 minimum protected.
+request_250,11579.08,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the ZAR 35300 minimum protected.
+request_251,1009.84,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the EUR 1300 minimum protected.
+request_252,5328631.42,affordable_later,wait,2026-08-15:28082000,2026-08-15,none,Wait until 2026-08-15 to pay 28082000 in full safely.
+request_253,1352.34,affordable_with_plan,installments,2024-03-21:984.6|2024-04-21:984.6|2024-05-22:984.6,2024-04-15,none,Use 3 installments totaling 2953.8; the schedule stays above the minimum.
+request_254,546.21,affordable_later,wait,2025-09-15:3535.2,2025-09-15,none,Wait until 2025-09-15 to pay 3535.2 in full safely.
+request_255,3345000,affordable_now,full_payment,2026-04-06:3345000,2026-04-06,none,Pay 3345000 today; the minimum balance remains protected.
+request_256,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the INR 168600 minimum protected.
+request_257,460.23,affordable_later,wait,2025-11-15:1352.4,2025-11-15,none,Wait until 2025-11-15 to pay 1352.4 in full safely.
+request_258,1113.6,affordable_now,full_payment,2026-01-07:1113.6,2026-01-07,none,Pay 1113.6 today; the minimum balance remains protected.
+request_259,164.99,affordable_later,wait,2024-10-15:935,2024-10-15,none,Wait until 2024-10-15 to pay 935 in full safely.
+request_260,8005440,affordable_with_plan,partial_payment,2025-02-06:8005440|2025-04-15:44073560,2025-04-15,none,Use the two-payment partial plan; each payment was verified against the projected balance.
+request_261,1830.4,affordable_now,full_payment,2026-07-03:1830.4,2026-07-03,none,Pay 1830.4 today; the minimum balance remains protected.
+request_262,9236000,affordable_now,full_payment,2024-12-05:9236000,2024-12-05,none,Pay 9236000 today; the minimum balance remains protected.
+request_263,6422.27,not_affordable,not_recommended,none,2025-07-15,none,Do not proceed now. No eligible payment plan keeps the ZAR 24100 minimum protected.
+request_264,19933.52,affordable_later,wait,2026-05-15:111300,2026-05-15,none,Wait until 2026-05-15 to pay 111300 in full safely.
+request_265,45970,affordable_now,full_payment,2024-03-06:45970,2024-03-06,none,Pay 45970 today; the minimum balance remains protected.
+request_266,686.78,affordable_with_plan,installments,2025-08-03:324.13|2025-08-31:324.13|2025-09-28:324.13,2025-08-15,none,Use 3 installments totaling 972.39; the schedule stays above the minimum.
+request_267,1483.32,not_affordable,not_recommended,none,2026-03-15,none,Do not proceed now. No eligible payment plan keeps the EUR 1500 minimum protected.
+request_268,886.47,affordable_with_plan,installments,2024-06-14:841.22|2024-07-15:841.22|2024-08-15:841.22,2024-07-15,none,Use 3 installments totaling 2523.66; the schedule stays above the minimum.
+request_269,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the ZAR 23100 minimum protected.
+request_270,126.91,not_affordable,not_recommended,none,2026-09-15,none,Do not proceed now. No eligible payment plan keeps the USD 1400 minimum protected.
+request_271,4014.63,affordable_later,wait,2024-11-15:91300,2024-11-15,none,Wait until 2024-11-15 to pay 91300 in full safely.
+request_272,5270140.92,affordable_with_plan,installments,2025-02-12:4709466.67|2025-03-12:4709466.67|2025-04-09:4709466.67,2025-03-15,none,Use 3 installments totaling 14128400.01; the schedule stays above the minimum.
+request_273,8683466.09,affordable_with_plan,partial_payment,2026-04-07:8683466.09|2026-04-15:7177533.91,2026-04-15,none,Use the two-payment partial plan; each payment was verified against the projected balance.
+request_274,2283.67,affordable_with_plan,installments,2024-12-04:940.75|2025-01-04:940.75|2025-02-04:940.75,2024-12-15,none,Use 3 installments totaling 2822.25; the schedule stays above the minimum.
+request_275,15884000,affordable_now,full_payment,2025-05-06:15884000,2025-05-06,none,Pay 15884000 today; the minimum balance remains protected.
