@@ -13,14 +13,14 @@ from buywait.models import FinancialEvent, FinancialProfile
 from buywait.simulator import SimulationPolicy, simulate_baseline_for_request, simulate_baseline_from_events
 
 
-def profile(balance=Decimal("1000"), minimum=Decimal("100"), currency="USD"):
+def profile(balance=Decimal("1000"), minimum=Decimal("100"), currency="USD", protected=()):
     return FinancialProfile(
         user_id="user_x",
         home_currency=currency,
         current_available_balance=balance,
         minimum_balance_to_keep=minimum,
         financial_priorities=(),
-        expense_categories_to_protect=(),
+        expense_categories_to_protect=tuple(protected),
         expense_categories_user_is_willing_to_reduce=(),
         expense_categories_user_is_willing_to_stop=(),
         payment_methods_user_will_consider=(PaymentMethod.FULL_PAYMENT,),
@@ -185,6 +185,92 @@ class SimulatorTests(unittest.TestCase):
         self.assertEqual(len(april_rent), 1)
         self.assertTrue(april_rent[0].explicit)
         self.assertEqual(result.deduplicated_recurring_occurrence_count, 1)
+
+    def test_explicit_future_event_deduplicates_same_cash_identity(self):
+        events = [
+            event("u1", category="utilities", description="Electricity bill", amount=Decimal("90"), event_date=date(2026, 1, 7), source_row=2),
+            event("u2", category="utilities", description="Electricity bill", amount=Decimal("90"), event_date=date(2026, 2, 7), source_row=3),
+            event("u3", category="utilities", description="Electricity bill", amount=Decimal("90"), event_date=date(2026, 3, 7), source_row=4),
+            event("future", category="utilities", description="Municipal utility payment", amount=Decimal("90"), status=EventStatus.SCHEDULED, event_date=date(2026, 4, 7), source_row=5),
+        ]
+        result = simulate(events)
+        april_utility = [item for item in result.occurrences if item.date == date(2026, 4, 7)]
+        self.assertEqual(len(april_utility), 1)
+        self.assertTrue(april_utility[0].explicit)
+        self.assertEqual(result.deduplicated_recurring_occurrence_count, 1)
+
+    def test_explicit_confirmed_salary_suppresses_earlier_same_stream_inference(self):
+        events = [
+            event("s1", direction=Direction.CREDIT, category="salary", event_type="income", description="Base salary", amount=Decimal("500"), event_date=date(2026, 1, 15), source_row=2),
+            event("s2", direction=Direction.CREDIT, category="salary", event_type="income", description="Base salary", amount=Decimal("500"), event_date=date(2026, 2, 15), source_row=3),
+            event("s3", direction=Direction.CREDIT, category="salary", event_type="income", description="Base salary", amount=Decimal("500"), event_date=date(2026, 3, 15), source_row=4),
+            event("future", direction=Direction.CREDIT, category="salary", event_type="income", description="Base salary", amount=Decimal("500"), status=EventStatus.SCHEDULED, event_date=date(2026, 5, 15), source_row=5),
+        ]
+        result = simulate(events)
+        self.assertFalse(any(item.date == date(2026, 4, 15) and item.category == "salary" for item in result.occurrences))
+        may_salary = [item for item in result.occurrences if item.date == date(2026, 5, 15) and item.category == "salary"]
+        self.assertEqual(len(may_salary), 1)
+        self.assertTrue(may_salary[0].explicit)
+        self.assertEqual(result.deduplicated_recurring_occurrence_count, 2)
+
+    def test_protected_variable_category_forecast_uses_recent_max_before_next_income(self):
+        events = [
+            event("g1", category="groceries", description="Market produce", amount=Decimal("60"), event_date=date(2026, 1, 5), source_row=2),
+            event("g2", category="groceries", description="Pantry refill", amount=Decimal("40"), event_date=date(2026, 1, 12), source_row=3),
+            event("g3", category="groceries", description="Neighbourhood grocer", amount=Decimal("30"), event_date=date(2026, 2, 5), source_row=4),
+            event("g4", category="groceries", description="Fresh food shop", amount=Decimal("30"), event_date=date(2026, 2, 12), source_row=5),
+            event("g5", category="groceries", description="Weekly produce market", amount=Decimal("20"), event_date=date(2026, 3, 5), source_row=6),
+            event("g6", category="groceries", description="Bulk pantry shop", amount=Decimal("20"), event_date=date(2026, 3, 12), source_row=7),
+            event("s1", direction=Direction.CREDIT, category="salary", event_type="income", description="Payroll", amount=Decimal("500"), event_date=date(2026, 1, 15), source_row=8),
+            event("s2", direction=Direction.CREDIT, category="salary", event_type="income", description="Payroll", amount=Decimal("500"), event_date=date(2026, 2, 15), source_row=9),
+            event("s3", direction=Direction.CREDIT, category="salary", event_type="income", description="Payroll", amount=Decimal("500"), event_date=date(2026, 3, 15), source_row=10),
+        ]
+        result = simulate(events, request_date=date(2026, 4, 1), prof=profile(protected=("groceries",)))
+        forecast = [item for item in result.occurrences if item.source_type == "variable_essential_forecast"]
+        self.assertEqual([(item.date, item.amount) for item in forecast], [(date(2026, 4, 5), Decimal("50.00")), (date(2026, 4, 12), Decimal("50.00"))])
+        self.assertTrue(all(item.date < date(2026, 4, 15) for item in forecast))
+
+    def test_fixed_recurring_expense_is_not_double_counted_as_variable_essential(self):
+        events = [
+            event("r1", category="rent", description="Apartment rent", amount=Decimal("300"), event_date=date(2026, 1, 5), source_row=2),
+            event("r2", category="rent", description="Apartment rent", amount=Decimal("300"), event_date=date(2026, 2, 5), source_row=3),
+            event("r3", category="rent", description="Apartment rent", amount=Decimal("300"), event_date=date(2026, 3, 5), source_row=4),
+            event("s1", direction=Direction.CREDIT, category="salary", event_type="income", description="Payroll", amount=Decimal("500"), event_date=date(2026, 1, 15), source_row=5),
+            event("s2", direction=Direction.CREDIT, category="salary", event_type="income", description="Payroll", amount=Decimal("500"), event_date=date(2026, 2, 15), source_row=6),
+            event("s3", direction=Direction.CREDIT, category="salary", event_type="income", description="Payroll", amount=Decimal("500"), event_date=date(2026, 3, 15), source_row=7),
+        ]
+        result = simulate(events, prof=profile(protected=("rent",)))
+        self.assertTrue(any(item.category == "rent" and item.source_type == "inferred_recurrence" for item in result.occurrences))
+        self.assertFalse(any(item.category == "rent" and item.source_type == "variable_essential_forecast" for item in result.occurrences))
+
+    def test_variable_forecast_ignores_events_after_request_date(self):
+        events = [
+            event("g1", category="groceries", description="Market produce", amount=Decimal("20"), event_date=date(2026, 1, 5), source_row=2),
+            event("g2", category="groceries", description="Pantry refill", amount=Decimal("20"), event_date=date(2026, 2, 5), source_row=3),
+            event("g3", category="groceries", description="Household groceries", amount=Decimal("20"), event_date=date(2026, 3, 5), source_row=4),
+            event("future_grocery", category="groceries", description="Future grocery shop", amount=Decimal("999"), event_date=date(2026, 4, 2), source_row=5),
+            event("s1", direction=Direction.CREDIT, category="salary", event_type="income", description="Payroll", amount=Decimal("500"), event_date=date(2026, 1, 15), source_row=6),
+            event("s2", direction=Direction.CREDIT, category="salary", event_type="income", description="Payroll", amount=Decimal("500"), event_date=date(2026, 2, 15), source_row=7),
+            event("s3", direction=Direction.CREDIT, category="salary", event_type="income", description="Payroll", amount=Decimal("500"), event_date=date(2026, 3, 15), source_row=8),
+        ]
+        result = simulate(events, request_date=date(2026, 4, 1), prof=profile(protected=("groceries",)))
+        forecast = [item for item in result.occurrences if item.source_type == "variable_essential_forecast"]
+        self.assertEqual([item.amount for item in forecast], [Decimal("20.00")])
+
+    def test_variable_forecast_is_row_order_independent(self):
+        events = [
+            event("g1", category="groceries", description="Market produce", amount=Decimal("60"), event_date=date(2026, 1, 5), source_row=2),
+            event("g2", category="groceries", description="Pantry refill", amount=Decimal("40"), event_date=date(2026, 1, 12), source_row=3),
+            event("g3", category="groceries", description="Market produce", amount=Decimal("20"), event_date=date(2026, 3, 5), source_row=4),
+            event("g4", category="groceries", description="Pantry refill", amount=Decimal("20"), event_date=date(2026, 3, 12), source_row=5),
+            event("s1", direction=Direction.CREDIT, category="salary", event_type="income", description="Payroll", amount=Decimal("500"), event_date=date(2026, 1, 15), source_row=6),
+            event("s2", direction=Direction.CREDIT, category="salary", event_type="income", description="Payroll", amount=Decimal("500"), event_date=date(2026, 2, 15), source_row=7),
+            event("s3", direction=Direction.CREDIT, category="salary", event_type="income", description="Payroll", amount=Decimal("500"), event_date=date(2026, 3, 15), source_row=8),
+        ]
+        first = simulate(events, prof=profile(protected=("groceries",)))
+        second = simulate(list(reversed(events)), prof=profile(protected=("groceries",)))
+        self.assertEqual(first.days, second.days)
+        self.assertEqual(first.occurrences, second.occurrences)
 
     def test_fx_conversion_for_future_event(self):
         result = simulate(
