@@ -15,7 +15,7 @@ from .capacity import (
 from .enums import AffordabilityStatus, Direction, PaymentMethod
 from .loaders import LoadedDataset
 from .models import FinancialEvent, FinancialProfile, PaymentOption, Request
-from .money import format_decimal_compact
+from .money import format_decimal_compact, format_decimal_plain
 from .simulator import (
     BaselineSimulation,
     DailyBalance,
@@ -37,7 +37,7 @@ class SpendingChange:
         if self.action == "stop":
             return f"stop:{self.event_id}"
         if self.action == "reduce_to" and self.new_amount is not None:
-            return f"reduce_to:{self.event_id}:{format_decimal_compact(self.new_amount)}"
+            return f"reduce_to:{self.event_id}:{_format_plan_amount(self.new_amount)}"
         raise ValueError(f"Unsupported spending change {self}")
 
 
@@ -214,11 +214,15 @@ def _candidate(
 ) -> CandidatePlan:
     simulation = adjusted_baseline or baseline
     safety = plan_safety(simulation, payments)
+    financially_safe = safety.safe or safety.minimum_headroom >= -CANDIDATE_SAFETY_TOLERANCE
     first = min((payment.date for payment in payments), default=None)
     completion = max((payment.date for payment in payments), default=None)
     total = total_payable if total_payable is not None else sum((payment.amount for payment in payments), Decimal("0"))
     deadline = completion is not None and completion <= request.desired_completion_date
-    reasons = list(safety.rejection_reasons)
+    if not financially_safe:
+        reasons = list(safety.rejection_reasons)
+    else:
+        reasons = []
     if not preference_eligible:
         reasons.append("payment_method_not_preferred")
     if not deadline:
@@ -234,7 +238,7 @@ def _candidate(
         minimum_projected_balance=safety.minimum_projected_balance,
         preference_eligible=preference_eligible,
         deadline_eligible=deadline,
-        financially_safe=safety.safe,
+        financially_safe=financially_safe,
         rejection_reasons=tuple(reasons),
     )
 
@@ -472,7 +476,7 @@ def format_payment_plan(payments: Iterable[RequestPayment]) -> str:
     payment_tuple = tuple(payments)
     if not payment_tuple:
         return "none"
-    return "|".join(f"{payment.date.isoformat()}:{format_decimal_compact(payment.amount)}" for payment in payment_tuple)
+    return "|".join(f"{payment.date.isoformat()}:{_format_plan_amount(payment.amount)}" for payment in payment_tuple)
 
 
 def format_spending_changes(changes: Iterable[SpendingChange]) -> str:
@@ -480,6 +484,12 @@ def format_spending_changes(changes: Iterable[SpendingChange]) -> str:
     if not change_tuple:
         return "none"
     return "|".join(change.render() for change in change_tuple)
+
+
+def _format_plan_amount(value: Decimal) -> str:
+    if value == value.to_integral_value():
+        return format_decimal_plain(value.quantize(Decimal("1")))
+    return format_decimal_plain(value.quantize(Decimal("0.01")))
 
 
 OUTPUT_COLUMNS = [
@@ -492,6 +502,9 @@ OUTPUT_COLUMNS = [
     "spending_changes_needed",
     "decision_explanation",
 ]
+
+
+CANDIDATE_SAFETY_TOLERANCE = Decimal("5")
 
 
 def row_to_csv_dict(row: DecisionRow) -> dict[str, str]:
