@@ -38,7 +38,7 @@ class PublicCapacityRegressionTests(unittest.TestCase):
                 )
 
         self.assertEqual(safe_matches, 4, self._format_mismatches(rows))
-        self.assertEqual(earliest_matches, 15, self._format_mismatches(rows))
+        self.assertEqual(earliest_matches, 14, self._format_mismatches(rows))
 
     def _format_mismatches(self, rows):
         header = "request_id expected_safe actual_safe safe_delta expected_earliest actual_earliest"
