@@ -16,7 +16,7 @@ from buywait.verifier import verify_decision
 
 def main() -> int:
     started = time.perf_counter()
-    dataset = load_dataset(ROOT / "dataset")
+    dataset = load_dataset(ROOT / "dataset", include_samples=False)
     rows = []
     failures: list[str] = []
     for request in dataset.requests:
