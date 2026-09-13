@@ -42,7 +42,7 @@ request_65,7058.41,not_affordable,not_recommended,none,,none,Do not proceed now.
 request_66,22200,affordable_now,full_payment,2026-04-03:22200,2026-04-03,none,Pay 22200 today; the minimum balance remains protected.
 request_67,485.53,affordable_later,wait,2024-10-15:2094,2024-10-15,none,Wait until 2024-10-15 to pay 2094 in full safely.
 request_68,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the USD 1500 minimum protected.
-request_69,478.18,affordable_with_plan,full_payment,2026-01-04:529.10,2026-01-15,stop:event_6405|reduce_to:event_6407:16.40,"Make spending change(s) stop:event_6405|reduce_to:event_6407:16.40, then pay safely."
+request_69,478.18,not_affordable,not_recommended,none,2026-01-15,none,Do not proceed now. No eligible payment plan keeps the EUR 700 minimum protected.
 request_70,59952.21,affordable_later,wait,2025-01-15:243900,2025-01-15,none,Wait until 2025-01-15 to pay 243900 in full safely.
 request_71,1293762.71,not_affordable,not_recommended,none,2025-07-15,none,Do not proceed now. No eligible payment plan keeps the IDR 8884800 minimum protected.
 request_72,0,not_affordable,not_recommended,none,,none,Do not proceed now. No eligible payment plan keeps the ZAR 12200 minimum protected.

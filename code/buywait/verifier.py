@@ -8,7 +8,7 @@ from .capacity import RequestPayment, plan_safety
 from .enums import AffordabilityStatus, PaymentMethod
 from .loaders import LoadedDataset
 from .models import PaymentOption, Request
-from .planner import CANDIDATE_SAFETY_TOLERANCE, DecisionRow, SpendingChange, apply_spending_changes
+from .planner import DecisionRow, SpendingChange, add_calendar_months, apply_spending_changes
 from .simulator import BaselineSimulation, simulate_baseline_for_request
 
 
@@ -49,6 +49,7 @@ def verify_decision(
         if row.affordability_status is not AffordabilityStatus.NOT_AFFORDABLE:
             errors.append("not_recommended_status")
         return VerificationResult(valid=not errors, errors=tuple(errors))
+    _verify_status_specific(request, row, payments, changes, errors)
     if not payments:
         errors.append("recommended_plan_missing_payments")
     if any(payment.date < request.request_date for payment in payments):
@@ -57,9 +58,44 @@ def verify_decision(
         errors.append("payment_after_deadline")
     _verify_method_specific(dataset, request, row, payments, errors)
     safety = plan_safety(adjusted, payments)
-    if not safety.safe and safety.minimum_headroom < -CANDIDATE_SAFETY_TOLERANCE:
+    if not safety.safe:
         errors.extend(safety.rejection_reasons)
     return VerificationResult(valid=not errors, errors=tuple(dict.fromkeys(errors)))
+
+
+def _verify_status_specific(
+    request: Request,
+    row: DecisionRow,
+    payments: tuple[RequestPayment, ...],
+    changes: tuple[SpendingChange, ...],
+    errors: list[str],
+) -> None:
+    if row.affordability_status is AffordabilityStatus.AFFORDABLE_NOW:
+        if row.recommended_payment_method is not PaymentMethod.FULL_PAYMENT:
+            errors.append("affordable_now_requires_full_payment")
+        if changes:
+            errors.append("affordable_now_has_spending_changes")
+        if len(payments) != 1 or payments[0].date != request.request_date or payments[0].amount != request.requested_amount:
+            errors.append("affordable_now_plan_mismatch")
+    elif row.affordability_status is AffordabilityStatus.AFFORDABLE_LATER:
+        if row.recommended_payment_method is not PaymentMethod.WAIT:
+            errors.append("affordable_later_requires_wait")
+        if len(payments) != 1 or payments[0].date <= request.request_date or payments[0].amount != request.requested_amount:
+            errors.append("affordable_later_plan_mismatch")
+    elif row.affordability_status is AffordabilityStatus.AFFORDABLE_WITH_PLAN:
+        if row.recommended_payment_method is PaymentMethod.NOT_RECOMMENDED:
+            errors.append("with_plan_not_recommended")
+        if row.recommended_payment_method is PaymentMethod.WAIT:
+            errors.append("with_plan_wait_method")
+        if row.recommended_payment_method is PaymentMethod.FULL_PAYMENT and not changes:
+            errors.append("with_plan_full_payment_requires_spending_changes")
+        if not payments:
+            errors.append("with_plan_missing_payments")
+    elif row.affordability_status is AffordabilityStatus.NOT_AFFORDABLE:
+        if row.recommended_payment_method is not PaymentMethod.NOT_RECOMMENDED:
+            errors.append("not_affordable_requires_not_recommended")
+        if payments:
+            errors.append("not_affordable_has_payments")
 
 
 def _verify_method_specific(
@@ -81,16 +117,43 @@ def _verify_method_specific(
     elif row.recommended_payment_method is PaymentMethod.PARTIAL_PAYMENT:
         if not request.allows_partial_payment:
             errors.append("partial_not_allowed")
+        if row.amount_safe_to_pay <= Decimal("0") or row.amount_safe_to_pay >= request.requested_amount:
+            errors.append("partial_safe_amount_out_of_range")
+        if row.earliest_date_for_full_payment is None:
+            errors.append("partial_missing_earliest_full_date")
+        elif row.earliest_date_for_full_payment > request.desired_completion_date:
+            errors.append("partial_earliest_after_deadline")
         if len(payments) != 2:
             errors.append("partial_payment_count")
-        elif payments[0].date != request.request_date:
-            errors.append("partial_first_date")
+        else:
+            if payments[0].date != request.request_date:
+                errors.append("partial_first_date")
+            if payments[0].amount != row.amount_safe_to_pay:
+                errors.append("partial_first_amount")
+            if payments[1].date != row.earliest_date_for_full_payment:
+                errors.append("partial_second_date")
+            if payments[1].amount != request.requested_amount - row.amount_safe_to_pay:
+                errors.append("partial_second_amount")
         if total != request.requested_amount:
             errors.append("partial_total")
     elif row.recommended_payment_method is PaymentMethod.INSTALLMENTS:
         option = _matching_installment_option(dataset, request, payments)
         if option is None:
             errors.append("installment_option_mismatch")
+        else:
+            profile = dataset.profile_by_user[request.user_id]
+            if PaymentMethod.INSTALLMENTS not in profile.payment_methods_user_will_consider:
+                errors.append("installments_not_preferred")
+            if profile.max_installment_months is None:
+                errors.append("installments_without_max_months")
+            else:
+                max_completion = add_calendar_months(option.first_payment_date, profile.max_installment_months)
+                if payments and payments[-1].date > max_completion:
+                    errors.append("installments_exceed_max_months")
+            if len(payments) != option.number_of_payments:
+                errors.append("installment_payment_count")
+            if total != option.total_payable_amount:
+                errors.append("installment_total_payable_mismatch")
     else:
         errors.append("unsupported_method")
 
@@ -125,7 +188,9 @@ def _parse_payment_plan(text: str, errors: list[str]) -> tuple[RequestPayment, .
         except (ValueError, InvalidOperation):
             errors.append("invalid_payment_plan_syntax")
             return ()
-    return tuple(sorted(payments, key=lambda item: (item.date, item.amount)))
+    if payments != sorted(payments, key=lambda item: (item.date, item.amount)):
+        errors.append("payment_plan_not_chronological")
+    return tuple(payments)
 
 
 def _parse_spending_changes(text: str, errors: list[str]) -> tuple[SpendingChange, ...]:

@@ -1,5 +1,6 @@
 import sys
 import unittest
+from datetime import date, timedelta
 from decimal import Decimal
 from pathlib import Path
 
@@ -11,13 +12,15 @@ from buywait.enums import AffordabilityStatus, PaymentMethod
 from buywait.loaders import load_dataset
 from buywait.planner import (
     SpendingChange,
+    _candidate,
+    add_calendar_months,
     apply_spending_changes,
     decide_request,
     format_payment_plan,
     generate_candidates,
     row_to_csv_dict,
 )
-from buywait.simulator import simulate_baseline_for_request
+from buywait.simulator import BaselineSimulation, DailyBalance, simulate_baseline_for_request
 
 
 class PlannerTests(unittest.TestCase):
@@ -106,6 +109,71 @@ class PlannerTests(unittest.TestCase):
             "spending_changes_needed",
             "decision_explanation",
         ])
+
+    def test_candidate_safety_uses_strict_zero_headroom_boundary(self):
+        sample = self.dataset.sample_request_by_id["request_01"]
+        request = sample.request
+        profile = self.dataset.profile_by_user[request.user_id]
+        payment = RequestPayment(request.request_date, request.requested_amount)
+        for headroom, expected in (
+            (Decimal("0"), True),
+            (Decimal("0.01"), True),
+            (Decimal("-0.01"), False),
+            (Decimal("-5"), False),
+        ):
+            with self.subTest(headroom=headroom):
+                closing = profile.minimum_balance_to_keep + request.requested_amount + headroom
+                day = DailyBalance(
+                    date=request.request_date,
+                    opening_balance=closing,
+                    credits=Decimal("0"),
+                    debits=Decimal("0"),
+                    closing_balance=closing,
+                    minimum_balance_to_keep=profile.minimum_balance_to_keep,
+                    headroom=closing - profile.minimum_balance_to_keep,
+                    occurrences=(),
+                )
+                baseline = BaselineSimulation(
+                    request_id=request.request_id,
+                    user_id=request.user_id,
+                    request_date=request.request_date,
+                    horizon_end=request.request_date,
+                    opening_balance_anchor=closing,
+                    days=(day,),
+                    occurrences=(),
+                    suffix_min_headroom={request.request_date: day.headroom},
+                    lifecycle_unresolved_count=0,
+                    explicit_future_event_count=0,
+                    inferred_recurring_occurrence_count=0,
+                    deduplicated_recurring_occurrence_count=0,
+                    skipped_missing_amount_event_count=0,
+                    skipped_missing_amount_event_ids=(),
+                    resolved_image_amounts=(),
+                    message_facts_applied=(),
+                    fx_conversion_count=0,
+                )
+                candidate = _candidate(
+                    request,
+                    baseline,
+                    method=PaymentMethod.FULL_PAYMENT,
+                    payments=(payment,),
+                )
+                self.assertEqual(candidate.financially_safe, expected)
+
+    def test_add_calendar_months_handles_month_boundaries(self):
+        self.assertEqual(add_calendar_months(date(2026, 1, 15), 1), date(2026, 2, 15))
+        self.assertEqual(add_calendar_months(date(2025, 1, 29), 1), date(2025, 2, 28))
+        self.assertEqual(add_calendar_months(date(2024, 1, 29), 1), date(2024, 2, 29))
+        self.assertEqual(add_calendar_months(date(2026, 1, 31), 1), date(2026, 2, 28))
+        self.assertEqual(add_calendar_months(date(2026, 3, 31), 1), date(2026, 4, 30))
+
+    def test_installment_max_month_boundary_uses_calendar_months(self):
+        sample = self.dataset.sample_request_by_id["request_02"]
+        profile = self.dataset.profile_by_user[sample.request.user_id]
+        start = date(2026, 1, 31)
+        limit = add_calendar_months(start, profile.max_installment_months or 0)
+        self.assertLessEqual(limit, add_calendar_months(start, profile.max_installment_months or 0))
+        self.assertGreater(limit + timedelta(days=1), limit)
 
 
 if __name__ == "__main__":

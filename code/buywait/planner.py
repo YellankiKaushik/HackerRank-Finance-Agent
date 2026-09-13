@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import calendar
 from dataclasses import dataclass, replace
 from datetime import date, timedelta
 from decimal import Decimal
@@ -187,7 +188,7 @@ def _installment_candidate(
     completion = payments[-1].date if payments else None
     preference = PaymentMethod.INSTALLMENTS in profile.payment_methods_user_will_consider
     if profile.max_installment_months is not None and completion is not None:
-        max_completion = option.first_payment_date + timedelta(days=31 * profile.max_installment_months)
+        max_completion = add_calendar_months(option.first_payment_date, profile.max_installment_months)
         preference = preference and completion <= max_completion
     return _candidate(
         request,
@@ -214,7 +215,7 @@ def _candidate(
 ) -> CandidatePlan:
     simulation = adjusted_baseline or baseline
     safety = plan_safety(simulation, payments)
-    financially_safe = safety.safe or safety.minimum_headroom >= -CANDIDATE_SAFETY_TOLERANCE
+    financially_safe = safety.safe
     first = min((payment.date for payment in payments), default=None)
     completion = max((payment.date for payment in payments), default=None)
     total = total_payable if total_payable is not None else sum((payment.amount for payment in payments), Decimal("0"))
@@ -385,6 +386,14 @@ def _candidate_selectable(candidate: CandidatePlan) -> bool:
     return candidate.preference_eligible and candidate.deadline_eligible and candidate.financially_safe
 
 
+def add_calendar_months(value: date, months: int) -> date:
+    month_index = value.month - 1 + months
+    year = value.year + month_index // 12
+    month = month_index % 12 + 1
+    day = min(value.day, calendar.monthrange(year, month)[1])
+    return date(year, month, day)
+
+
 def _candidate_rank_key(request: Request, candidate: CandidatePlan) -> tuple[object, ...]:
     completes = candidate.completion_date is not None and candidate.completion_date <= request.desired_completion_date
     return (
@@ -502,9 +511,6 @@ OUTPUT_COLUMNS = [
     "spending_changes_needed",
     "decision_explanation",
 ]
-
-
-CANDIDATE_SAFETY_TOLERANCE = Decimal("5")
 
 
 def row_to_csv_dict(row: DecisionRow) -> dict[str, str]:
