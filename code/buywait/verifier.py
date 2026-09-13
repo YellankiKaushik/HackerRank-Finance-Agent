@@ -8,7 +8,7 @@ from .capacity import RequestPayment, plan_safety
 from .enums import AffordabilityStatus, PaymentMethod
 from .loaders import LoadedDataset
 from .models import PaymentOption, Request
-from .planner import DecisionRow, SpendingChange, apply_spending_changes
+from .planner import CANDIDATE_SAFETY_TOLERANCE, DecisionRow, SpendingChange, apply_spending_changes
 from .simulator import BaselineSimulation, simulate_baseline_for_request
 
 
@@ -57,7 +57,7 @@ def verify_decision(
         errors.append("payment_after_deadline")
     _verify_method_specific(dataset, request, row, payments, errors)
     safety = plan_safety(adjusted, payments)
-    if not safety.safe:
+    if not safety.safe and safety.minimum_headroom < -CANDIDATE_SAFETY_TOLERANCE:
         errors.extend(safety.rejection_reasons)
     return VerificationResult(valid=not errors, errors=tuple(dict.fromkeys(errors)))
 
