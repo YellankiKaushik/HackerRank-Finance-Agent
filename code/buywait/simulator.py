@@ -446,7 +446,7 @@ def _variable_essential_occurrences(
     profile: FinancialProfile,
     fx_lookup: FxLookup,
 ) -> tuple[LedgerOccurrence, ...]:
-    categories = set(profile.expense_categories_to_protect) | {"groceries", "transport"}
+    categories = set(profile.expense_categories_to_protect)
     represented_event_ids = {
         source_id
         for stream in streams
@@ -663,3 +663,4 @@ def _occurrence_sort_key(occurrence: LedgerOccurrence) -> tuple[object, ...]:
         occurrence.source_ids,
         occurrence.amount,
     )
+
