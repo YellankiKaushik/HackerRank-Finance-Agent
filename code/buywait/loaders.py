@@ -390,11 +390,11 @@ def _group_by(items: Iterable[T], key_fn: Callable[[T], str | None]) -> dict[str
     return {key: tuple(value) for key, value in grouped.items()}
 
 
-def load_dataset(dataset_dir: Path | None = None) -> LoadedDataset:
+def load_dataset(dataset_dir: Path | None = None, *, include_samples: bool = True) -> LoadedDataset:
     dataset_dir = dataset_dir or default_dataset_dir()
     dataset_dir = dataset_dir.resolve()
     requests = tuple(load_requests(dataset_dir))
-    samples = tuple(load_sample_requests(dataset_dir))
+    samples = tuple(load_sample_requests(dataset_dir)) if include_samples else ()
     profiles = tuple(load_financial_profiles(dataset_dir))
     events = tuple(load_financial_events(dataset_dir))
     options = tuple(load_payment_options(dataset_dir))
@@ -434,11 +434,11 @@ def load_dataset(dataset_dir: Path | None = None) -> LoadedDataset:
         "exchange_rates_by_date_and_pair",
         {(item.rate_date, item.from_currency, item.to_currency): item for item in rates},
     )
-    validate_integrity(dataset)
+    validate_integrity(dataset, allow_external_request_references=not include_samples)
     return dataset
 
 
-def validate_integrity(dataset: LoadedDataset) -> None:
+def validate_integrity(dataset: LoadedDataset, *, allow_external_request_references: bool = False) -> None:
     all_request_ids = set(dataset.request_by_id) | set(dataset.sample_request_by_id)
     profile_ids = set(dataset.profile_by_user)
     event_ids = set(dataset.event_by_id)
@@ -450,7 +450,9 @@ def validate_integrity(dataset: LoadedDataset) -> None:
             raise IntegrityError(f"Sample request {sample.request.request_id} references missing profile {sample.request.user_id}")
     for option in dataset.payment_options:
         if option.request_id not in all_request_ids:
-            raise IntegrityError(f"Payment option {option.payment_option_id} references unknown request {option.request_id}")
+            if not allow_external_request_references:
+                raise IntegrityError(f"Payment option {option.payment_option_id} references unknown request {option.request_id}")
+            continue
         if option.number_of_payments == 1 and option.payment_frequency_days is not None:
             raise IntegrityError(f"One-payment option {option.payment_option_id} should have blank payment_frequency_days")
         if option.number_of_payments > 1 and option.payment_frequency_days is None:
@@ -464,7 +466,8 @@ def validate_integrity(dataset: LoadedDataset) -> None:
         if message.user_id not in profile_ids:
             raise IntegrityError(f"Message {message.message_id} references missing profile {message.user_id}")
         if message.request_id and message.request_id not in all_request_ids:
-            raise IntegrityError(f"Message {message.message_id} references unknown request {message.request_id}")
+            if not allow_external_request_references:
+                raise IntegrityError(f"Message {message.message_id} references unknown request {message.request_id}")
         if message.related_event_id and message.related_event_id not in event_ids:
             raise IntegrityError(f"Message {message.message_id} references unknown event {message.related_event_id}")
     image_ids = set()
@@ -475,8 +478,8 @@ def validate_integrity(dataset: LoadedDataset) -> None:
         if image.user_id not in profile_ids:
             raise IntegrityError(f"Image {image.image_id} references missing profile {image.user_id}")
         if image.request_id and image.request_id not in all_request_ids:
-            raise IntegrityError(f"Image {image.image_id} references unknown request {image.request_id}")
+            if not allow_external_request_references:
+                raise IntegrityError(f"Image {image.image_id} references unknown request {image.request_id}")
         if image.related_event_id and image.related_event_id not in event_ids:
             raise IntegrityError(f"Image {image.image_id} references unknown event {image.related_event_id}")
         dataset.require_image_path(image.image_id)
-
