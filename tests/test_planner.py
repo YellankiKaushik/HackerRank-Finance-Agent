@@ -94,7 +94,7 @@ class PlannerTests(unittest.TestCase):
                 RequestPayment(self.dataset.sample_request_by_id["request_01"].request.request_date, Decimal("2.50")),
             )
         )
-        self.assertEqual(text, "2024-03-03:10|2024-03-03:2.5")
+        self.assertEqual(text, "2024-03-03:10|2024-03-03:2.50")
         row = row_to_csv_dict(self.decision("request_01"))
         self.assertEqual(list(row), [
             "request_id",
